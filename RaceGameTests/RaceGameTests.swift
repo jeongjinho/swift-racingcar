@@ -104,7 +104,7 @@ class RaceGameTests: XCTestCase {
     func test_inputView_validation_minus_value() throws {
         //given
         let input = -5
-        let validator = RacingGameInputChecker().validator
+        let validator = RacingGameInputValidator()
         
         //when && then
         let expectation = InputViewError.minusCount
@@ -117,7 +117,7 @@ class RaceGameTests: XCTestCase {
         
         let  input = "다섯"
         
-        let converter = RacingGameInputChecker().converter
+        let converter = RacingGameInputConverter()
     
         //when &&then
         let expectation = InputViewError.incorrectFormat
@@ -145,7 +145,7 @@ class RaceGameTests: XCTestCase {
     func test_when자동차의이름_5자초과_thenTextLengthExceeded_Error발생하는지_체크() throws {
         //given
         let carNames = ["Tayo","BoongBoong","Took","Bentley"]
-        let validator = RacingGameInputChecker().validator
+        let validator = RacingGameInputValidator()
         
         //then
         let expectation = InputViewError.textLengthExceeded

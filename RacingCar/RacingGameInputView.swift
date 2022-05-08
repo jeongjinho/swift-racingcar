@@ -9,12 +9,11 @@ import Foundation
 
 
 final class RacingGameInputView: RacingGameInput {
-    let checker: RacingGameInputChecker = RacingGameInputChecker()
+    let converter = RacingGameInputConverter()
+    let validator = RacingGameInputValidator()
     let randomGenerator: RandomGettable
     private var carNames: [String] = []
     private var gameCount: Int = 0
-    
-    
     
     init(randomGenerator: RandomGettable) {
         self.randomGenerator = randomGenerator
@@ -28,16 +27,16 @@ final class RacingGameInputView: RacingGameInput {
     }
     
     private func inputCarNames() throws -> [String] {
-        let input: String = try checker.converter.convertToUnwrapper(value: readLine())
+        let input: String = try converter.convertToUnwrapper(value: readLine())
         let carNames = splitCarNames(input: input)
-        try checker.validator.checkValidation(carNames: carNames)
+        try validator.checkValidation(carNames: carNames)
         return carNames
     }
     
     private  func inputGameCount() throws -> Int {
-        let input: String = try checker.converter.convertToUnwrapper(value: readLine())
-        let count: Int = try checker.converter.converterToInteger(input: input)
-        try checker.validator.checkValidation(count: count)
+        let input: String = try converter.convertToUnwrapper(value: readLine())
+        let count: Int = try converter.converterToInteger(input: input)
+        try validator.checkValidation(count: count)
         return count
     }
     
